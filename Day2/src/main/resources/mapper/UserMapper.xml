@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+    <insert id="insertUser">
+        insert into user(username,password,age,sex,email) values("JuJingyi","123456",27,'女',"236010069@qq.com")
+    </insert>
+    <update id="updateUser">
+        update user set username = 'IU' where id = 12
+    </update>
+    <delete id="deleteUser">
+        delete from user where id = 12
+    </delete>
+    <select id="selectUserById" resultType="pojo.User">
+        select * from user where id = 11
+    </select>
+    <select id="selectAllUsers" resultType="User">
+        select * from user;
+    </select>
+
+</mapper>
