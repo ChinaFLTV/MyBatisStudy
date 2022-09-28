@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.UserMapper">
     <insert id="insertUser">
-        insert into user(username,password,age,sex,email) values("JuJingyi","123456",27,'女',"236010069@qq.com")
+        insert into user(username,password,age,sex,email) values("IU","123456",30,'女',"3242742226@qq.com")
     </insert>
     <update id="updateUser">
         update user set username = 'IU' where id = 12
