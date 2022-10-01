@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.UserMapper">
+
+    <select id="getUserMap" resultType="map">
+
+        select * from user
+
+    </select>
+
+    <!--    <select id="getUserList" resultType="User">
+
+            select id,username,password,age,sex,email,dept departmentID from user
+
+        </select>-->
+    <resultMap id="mapID" type="User">
+
+        <id property="id" column="id"/>
+        <result property="departmentID" column="dept"/>
+
+    </resultMap>
+
+    <select id="getUserList" resultMap="mapID">
+
+        select * from user
+
+    </select>
+
+    <resultMap id="heihei" type="User">
+
+        <id property="id" column="id"/>
+        <result property="departmentID" column="did"/>
+        <result property="department.did" column="did"/>
+        <result property="department.name" column="name"/>
+
+    </resultMap>
+
+    <resultMap id="hehe" type="User">
+
+        <id property="id" column="id"/>
+        <result property="departmentID" column="did"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+        <association property="department" javaType="Department">
+            <id property="did" column="did"/>
+            <result property="name" column="name"/>
+        </association>
+
+
+    </resultMap>
+
+    <resultMap id="xixi" type="User">
+
+        <id property="id" column="id"/>
+        <result property="departmentID" column="dept"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="email" column="email"/>
+        <association property="department" fetchType="eager" select="mappers.DepartmentMapper.hehe" column="dept"/>
+
+    </resultMap>
+
+    <select id="getUserById" resultMap="xixi">
+
+        select * from user where id = #{id}
+
+    </select>
+
+    <resultMap id="haha" type="User">
+
+        <id property="id" column="id"/>
+        <result property="departmentID" column="dept"/>
+
+    </resultMap>
+
+    <select id="getUserListByDept" resultMap="haha">
+
+        select * from user where dept = #{dept}
+
+    </select>
+
+</mapper>
