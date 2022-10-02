@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.UserMapper">
+
+    <cache/>
+
+    <resultMap id="heihei" type="User">
+
+        <id property="id" column="id"/>
+        <result property="departmentID" column="dept"/>
+
+    </resultMap>
+
+
+    <select id="getUserListByDept" resultMap="heihei">
+
+        select * from user where dept = #{dept}
+
+    </select>
+
+    <select id="getUserCustomized" resultType="User">
+
+        select * from user
+        <trim prefix="where" suffixOverrides="and | or">
+
+            <if test="id != null">
+
+                id = #{id} and
+
+            </if>
+
+            <if test="username != null and password != null">
+
+                username = #{username} and password = #{password} and
+
+            </if>
+
+            <if test="age != null">
+
+                age = #{age} and
+
+            </if>
+
+            <if test="sex != null">
+
+                sex = #{sex} and
+
+            </if>
+
+            <if test="email!=null">
+
+                email = #{email}
+
+            </if>
+
+        </trim>
+
+    </select>
+
+    <select id="getUserBySomething" resultType="User">
+
+        select * from user where
+
+        <choose>
+
+            <when test="id != null">id = #{id}</when>
+            <when test="username != null">username = #{username}</when>
+            <when test="password != null">password = #{password}</when>
+            <when test="age != null">age = #{age}</when>
+            <when test="sex != null">sex = #{sex}</when>
+            <when test="email != null">email = #{email}</when>
+            <otherwise>
+
+                id = 13
+
+            </otherwise>
+
+
+        </choose>
+
+    </select>
+
+
+    <delete id="deleteBatch">
+
+        delete from user where
+        <!--        <foreach collection="ids" item="heihei" open="(" close=")" separator=",">
+
+                    #{heihei}
+
+                </foreach>-->
+
+        <foreach collection="ids" item="hehe" separator="or">
+
+            id = #{hehe}
+
+        </foreach>
+
+    </delete>
+
+    <insert id="insertBatch">
+
+        insert into user values
+        <foreach collection="users" item="user" separator=",">
+
+            (null,#{user.username},#{user.password},#{user.age},#{user.sex},#{user.email},null)
+
+        </foreach>
+
+
+    </insert>
+
+    <sql id="heiheihei">id,username,password,age,sex,email</sql>
+
+    <select id="getUserPartlyById" resultType="User">
+
+        select
+        <include refid="heiheihei"/>
+        from user where id = #{id}
+
+    </select>
+
+</mapper>
