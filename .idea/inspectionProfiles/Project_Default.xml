@@ -3,6 +3,7 @@
     <option name="myName" value="Project Default" />
     <inspection_tool class="AlibabaAbstractMethodOrInterfaceMethodMustUseJavadoc" enabled="false" level="MAJOR" enabled_by_default="false" />
     <inspection_tool class="AlibabaCommentsMustBeJavadocFormat" enabled="false" level="MAJOR" enabled_by_default="false" />
+    <inspection_tool class="CommentedOutCode" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
     <inspection_tool class="ForgottenDebugOutputInspection" enabled="true" level="ERROR" enabled_by_default="true">
       <option name="configuration">
         <list>
@@ -76,6 +77,8 @@
           <option value="org.mybatis:mybatis" />
           <option value="junit:junit" />
           <option value="mysql:mysql-connector-java" />
+          <option value="org.mybatis.caches:mybatis-ehcache" />
+          <option value="ch.qos.logback:logback-classic" />
         </list>
       </option>
     </inspection_tool>
